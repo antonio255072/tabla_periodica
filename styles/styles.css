@@ -1,0 +1,457 @@
+html {
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+:root {
+    --color-alkali-metal: #F54927;
+    --color-alkaline-earth: #EBF527;
+    --color-transition-metal: #A6F527;
+    --color-post-transition-metal: #F5AF22;
+    --color-metalloid: #22F537;
+    --color-diatomic-nonmetal: #8949F8;
+    --color-polyatomic-nonmetal: #8949F8;
+    --color-noble-gas: #22A8F5;
+    --color-lanthanide: #24FF8E;
+    --color-actinide: #E022F5;
+    --color-link: #177AFA;
+}
+
+a {
+    color: var(--color-link);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+a:visited {
+    text-decoration: none;
+    color: var(--color-link);
+}
+
+a:focus, a:focus-visible {
+    border: none;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.tabla-periodica {
+    display: grid;
+    /* grid-template-columns: repeat(18, 1fr); */
+    /* grid-template-rows: repeat(7, 1fr); */
+    grid-template-columns: repeat(18, minmax(0, 1fr));
+    gap: 4px;
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.element {
+    font-size: .63rem;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    padding: 4px;
+    border-width: 2px;
+    border-style: solid;
+    transition: transform 0.2s ease, background .2s ease;
+    position: relative;
+}
+
+.element.detail {
+    width: 141px;
+    height: 141px;
+    font-size: 1.2rem;
+    flex: 0 0 auto;
+}
+
+.element:hover,
+.element.active {
+    cursor: pointer;
+    transform: scale(1.5);
+    z-index: 10;
+}
+
+.element.detail:hover {
+    cursor: default;
+    transform: none;
+}
+
+.element__info {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.element__symbol {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.element.detail .element__symbol {
+    font-size: 2.5rem;
+}
+
+.element--hidden {
+    grid-row: 8;
+    grid-column: 1;
+    visibility: hidden;
+}
+
+.element--alkali-metal {
+    border-color: var(--color-alkali-metal);
+}
+
+.element--alkali-metal:hover,
+.element--alkali-metal.selected {
+    background-color: var(--color-alkali-metal);
+}
+
+.element--alkaline-earth,
+.element--alkaline-earth.selected {
+    border-color: var(--color-alkaline-earth);
+}
+
+.element--alkaline-earth:hover,
+.element--alkaline-earth.selected {
+    background-color: var(--color-alkaline-earth);
+}
+
+.element--transition-metal,
+.element--transition-metal.selected {
+    border-color: var(--color-transition-metal);
+}
+
+.element--transition-metal:hover,
+.element--transition-metal.selected {
+    background-color: var(--color-transition-metal);
+}
+
+.element--post-transition-metal {
+    border-color: var(--color-post-transition-metal);
+}
+
+.element--post-transition-metal:hover,
+.element--post-transition-metal.selected {
+    background-color: var(--color-post-transition-metal);
+}
+
+.element--metalloid {
+    border-color: var(--color-metalloid);
+}
+
+.element--metalloid:hover,
+.element--metalloid.selected {
+    background-color: var(--color-metalloid);
+}
+
+.element--diatomic-nonmetal {
+    border-color: var(--color-diatomic-nonmetal);
+}
+
+.element--diatomic-nonmetal:hover,
+.element--diatomic-nonmetal.selected {
+    background-color: var(--color-diatomic-nonmetal);
+}
+
+.element--polyatomic-nonmetal {
+    border-color: var(--color-polyatomic-nonmetal);
+}
+
+.element--polyatomic-nonmetal:hover,
+.element--polyatomic-nonmetal.selected {
+    background-color: var(--color-polyatomic-nonmetal);
+}
+
+.element--noble-gas {
+    border-color: var(--color-noble-gas);
+}
+
+.element--noble-gas:hover,
+.element--noble-gas.selected {
+    background-color: var(--color-noble-gas);
+}
+
+.element--lanthanide {
+    border-color: var(--color-lanthanide)
+}
+
+.element--lanthanide:hover,
+.element--lanthanide.selected {
+    background-color: var(--color-lanthanide)
+}
+
+.element--actinide {
+    border-color: var(--color-actinide);
+}
+
+.element--actinide:hover,
+.element--actinide.selected {
+    background-color: var(--color-actinide);
+}
+
+.element-detail__header {
+    display: flex;
+    height: 134px;
+    position: relative;
+}
+
+.element-detail__header .summary {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    line-height: 1.4rem;
+    max-height: calc(1.4rem * 3);
+    overflow: hidden;
+    margin-top: 16px;
+    margin-left: 16px;
+}
+
+.element-detail__header .summary a {
+    display: inline-block;
+    margin-left: auto;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-bottom: 8px;
+}
+
+.filters-menu {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100%;
+  background: white;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+  transition: right 0.3s ease;
+  z-index: 1000;
+  padding: 14px;
+}
+
+.filters-menu.active {
+  right: 0;
+}
+
+.filters-menu__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.filters-menu__title h2 {
+    width: min-content;
+}
+
+.filters-menu__title span {
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.btn-filters {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1100;
+
+  width: 44px;
+  height: 44px;
+
+  background: white;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+/* LÍNEA BASE */
+.icon {
+  position: relative;
+  width: 22px;
+  height: 2.5px;
+  background: black;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform: translateZ(0);
+}
+
+.icon::before,
+.icon::after {
+  content: "";
+  width: 22px;
+  height: 2.5px;
+  background: black;
+  position: absolute;
+  left: 0;
+  border-radius: 2px;
+  transform: translateZ(0); /* fuerza render GPU */
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* separación perfecta */
+.icon::before {
+  top: -7px;
+}
+
+.icon::after {
+  top: 7px;
+}
+
+.btn-filters.active {
+    box-shadow: none;
+}
+
+.btn-filters.active .icon {
+  background: transparent;
+}
+
+.btn-filters.active .icon::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.btn-filters.active .icon::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 900;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.detail-img-container {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+}
+
+.category {
+    border-width: 3px;
+    border-style: solid;
+    font-weight: 500;
+    padding: 8px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 600;
+}
+
+.category:active {
+    transform: scale(.87);
+}
+
+.category--alkali-metal {
+    border-color: var(--color-alkali-metal);
+}
+
+.category--alkali-metal.active {
+    background-color: var(--color-alkali-metal);
+}
+
+.category--alkaline-earth {
+    border-color: var(--color-alkaline-earth);
+}
+
+.category--alkaline-earth.active {
+    background-color: var(--color-alkaline-earth);
+}
+
+.category--transition-metal {
+    border-color: var(--color-transition-metal);
+}
+
+.category--transition-metal.active {
+    background-color: var(--color-transition-metal);
+}
+
+.category--post-transition-metal {
+    border-color: var(--color-post-transition-metal);
+}
+
+.category--post-transition-metal.active {
+    background-color: var(--color-post-transition-metal);
+}
+
+.category--metalloid {
+    border-color: var(--color-metalloid);
+}
+
+.category--metalloid.active {
+    background-color: var(--color-metalloid);
+}
+
+.category--diatomic-nonmetal {
+    border-color: var(--color-diatomic-nonmetal);
+}
+
+.category--diatomic-nonmetal.active {
+    background-color: var(--color-diatomic-nonmetal);
+}
+
+.category--polyatomic-nonmetal {
+    border-color: var(--color-polyatomic-nonmetal);
+}
+
+.category--polyatomic-nonmetal.active {
+    background-color: var(--color-polyatomic-nonmetal);
+}
+
+.category--noble-gas {
+    border-color: var(--color-noble-gas);
+}
+
+.category--noble-gas.active {
+    background-color: var(--color-noble-gas);
+}
+
+.category--lanthanide {
+    border-color: var(--color-lanthanide)
+}
+
+.category--lanthanide.active {
+    background-color: var(--color-lanthanide)
+}
+
+.category--actinide {
+    border-color: var(--color-actinide);
+}
+
+.category--actinide.active {
+    background-color: var(--color-actinide);
+}
+
+.author {
+    position: fixed;
+    bottom: 12px;
+    left: 12px;
+    font-size: 18px;
+    font-weight: bold;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla Periodíca - David Antonio Cruz García - 255072</title>
+    <link rel="stylesheet" href="styles/micro-modal.css">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body>
+    <main>
+        <div class="tabla-periodica">
+            <div class="element element--hidden"></div>
+        </div>
+    </main>
+
+    <!-- Menu lateral -->
+    <button class="btn-filters" aria-label="Abrir filtros">
+        <span class="icon"></span>
+    </button>
+    <div class="overlay"></div>
+    <aside class="filters-menu">
+        <div class="filters-menu__title">
+            <h2>Filtros</h2>
+            <span class="filters-menu__clear">Limpiar</span>
+        </div>
+        <div class="filters-menu__content"></div>
+    </aside>
+
+
+    <!-- Modal  de detalle -->
+    <div id="element-detail-modal" aria-hidden="true" class="modal">
+        <div data-micromodal-close class="modal__overlay">
+            <div role="dialog" aria-modal="true" aria-labelledby="modal-1-title" class="modal__content" tabindex="-1">
+                <div class="element-detail"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Autor -->
+     <div class="author">David Antonio Cruz García - 255072</div>
+</body>
+
+<script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+<script src="scripts/utilidades.js"></script>
+<script src="scripts/periodicTable.js"></script>
+<script src="scripts/menu.js"></script>
+<script src="scripts/index.js"></script>
+
+</html>
