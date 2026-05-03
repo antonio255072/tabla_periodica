@@ -3,7 +3,7 @@ html {
     box-sizing: border-box;
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1600px) {
   html {
     font-size: 18px;
   }
@@ -58,8 +58,14 @@ img {
     grid-template-columns: repeat(18, minmax(0, 1fr));
     gap: 4px;
     width: 85%;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
+}
+
+@media (min-width: 1600px) {
+    .tabla-periodica {
+        max-width: 1400px;
+    }
 }
 
 .element {
