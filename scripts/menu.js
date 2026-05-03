@@ -23,10 +23,8 @@ const menu = {
     this.initMenuFilters();
   },
   toggleCategorySelectedState: function(category) {
-    console.log(category);
     const categoryElements = document.querySelectorAll(".element--" + category.id);
     categoryElements.forEach(el => {
-      console.log(el)
       el.classList.toggle("selected");
     });
   },
@@ -41,7 +39,6 @@ const menu = {
     });
   },
   initMenuFilters: function initMenuFilters() {
-    console.log("categorias:", periodicTable.categoryMap);
     const sidenavContent = document.querySelector(".filters-menu__content");
     for (let category in periodicTable.categoryMap) {
       const categoryDiv = document.createElement("div");
