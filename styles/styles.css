@@ -3,6 +3,12 @@ html {
     box-sizing: border-box;
 }
 
+@media (min-width: 1400px) {
+  html {
+    font-size: 18px;
+  }
+}
+
 *,
 *:before,
 *:after {
@@ -52,7 +58,7 @@ img {
     grid-template-columns: repeat(18, minmax(0, 1fr));
     gap: 4px;
     width: 85%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
